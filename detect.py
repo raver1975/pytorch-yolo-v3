@@ -15,6 +15,7 @@ import pandas as pd
 import random 
 import pickle as pkl
 import itertools
+import uuid
 
 class test_net(nn.Module):
     def __init__(self, num_layers, input_size):
@@ -290,6 +291,23 @@ if __name__ ==  '__main__':
         label = "{0}".format(classes[cls])
         color = random.choice(colors)
         cv2.rectangle(img, c1, c2,color, 1)
+        
+        #crop out 512x512 person
+        if cls==0:
+            wid=c2[0]-c1[0]
+            hei=c2[1]-c1[1]
+            if wid>hei:
+                letterbox=(wid-hei)/2
+                #blank_image = np.zeros((wid,wid,3), np.uint8)
+                crop_img=img[c1[1]-letterbox:c1[1]-letterbox+wid,c1[0],c1[0]+wid]              
+            else:
+                letterbox=(hei-wid)/2
+                #blank_image = np.zeros((wid,wid,3), np.uint8)
+                crop_img=img[c1[1],c1[1]+hei,c1[0]-letterbox,c1[0]-letterbox+hei]
+            newimage = cv2.resize(crop_img,(512,512))
+            cv2.imwrite(uuid.uuid1()+".jpg",newimage)
+            
+        
         t_size = cv2.getTextSize(label, cv2.FONT_HERSHEY_PLAIN, 1 , 1)[0]
         c2 = c1[0] + t_size[0] + 3, c1[1] + t_size[1] + 4
         cv2.rectangle(img, c1, c2,color, -1)
