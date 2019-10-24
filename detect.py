@@ -289,7 +289,7 @@ if __name__ ==  '__main__':
         return img[y1:y2, x1:x2, :]
 
     def pad_img_to_fit_bbox(img, x1, x2, y1, y2):
-        img = cv2.copyMakeBorder(img, - min(0, y1), max(y2 - img.shape[0], 0),-min(0, x1), max(x2 - img.shape[1], 0),cv2.BORDER_CONSTANT,0f)
+        img = cv2.copyMakeBorder(img, - min(0, y1), max(y2 - img.shape[0], 0),-min(0, x1), max(x2 - img.shape[1], 0),cv2.BORDER_CONSTANT,0)
         y2 += -min(0, y1)
         y1 += -min(0, y1)
         x2 += -min(0, x1)
