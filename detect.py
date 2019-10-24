@@ -323,7 +323,7 @@ if __name__ ==  '__main__':
                 bbox=c1[1],c1[1]+hei,c1[0]-letterbox,c1[0]-letterbox+hei
                 crop_image=imcrop(img,bbox)
                 
-            newimage = cv2.resize(crop_img,(512,512))
+            newimage = cv2.resize(crop_image,(512,512))
             cv2.imwrite(uuid.uuid1()+".jpg",newimage)
             
         
