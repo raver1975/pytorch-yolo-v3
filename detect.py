@@ -327,8 +327,7 @@ if __name__ ==  '__main__':
                 #face detection
                 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
                 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-                faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-                
+                faces = face_cascade.detectMultiScale(gray, 1.3, 5)               
                 print ("faces found "+str(len(faces)))
                 print(faces)
                 if len(faces)==1:
@@ -344,9 +343,14 @@ if __name__ ==  '__main__':
                     crop_image=imcrop(img,bbox)
                     ff=str(uuid.uuid1())+".jpg";
                     newimage = cv2.resize(crop_image,(512,512))
-                    cv2.imwrite("{}/sub_{}".format(args.det,ff),newimage)
-                    newimage2=cv2.resize(crop_image,(128,128))
-                    cv2.imwrite("{}/thumb_{}".format(args.det,ff),newimage2)
+                    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                    faces = face_cascade.detectMultiScale(gray, 1.3, 5)               
+                    print ("subfaces found "+str(len(faces)))
+                    print(faces)
+                    if len(faces)==1:
+                        cv2.imwrite("{}/sub_{}".format(args.det,ff),newimage)
+                        newimage2=cv2.resize(crop_image,(128,128))
+                        cv2.imwrite("{}/thumb_{}".format(args.det,ff),newimage2)
         #cv2.rectangle(img, c1, c2,color, 1)
         #t_size = cv2.getTextSize(label, cv2.FONT_HERSHEY_PLAIN, 1 , 1)[0]
         #c2 = c1[0] + t_size[0] + 3, c1[1] + t_size[1] + 4
