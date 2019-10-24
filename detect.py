@@ -343,7 +343,7 @@ if __name__ ==  '__main__':
                     crop_image=imcrop(img,bbox)
                     ff=str(uuid.uuid1())+".jpg";
                     newimage = cv2.resize(crop_image,(512,512))
-                    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                    gray = cv2.cvtColor(newimage, cv2.COLOR_BGR2GRAY)
                     faces = face_cascade.detectMultiScale(gray, 1.3, 5)               
                     print ("subfaces found "+str(len(faces)))
                     print(faces)
