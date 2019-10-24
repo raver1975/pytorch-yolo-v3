@@ -311,6 +311,14 @@ if __name__ ==  '__main__':
             hei=c2[1]-c1[1]
             
             if wid>hei:
+                border=wid/10
+                c1[0]=c1[0]-border
+                c2[0]=c2[0]-border
+                c1[1]=c1[1]+border
+                c2[1]=c2[1]+border
+                wid=c2[0]-c1[0]
+                hei=c2[1]-c1[1]
+               
                 letterbox=(wid-hei)/2
                 #blank_image = np.zeros((wid,wid,3), np.uint8)
                 #crop_img=img[c1[1]-letterbox:c1[1]-letterbox+wid,c1[0]:c1[0]+wid]   
@@ -318,6 +326,13 @@ if __name__ ==  '__main__':
                 crop_image=imcrop(img,bbox)
                 
             else:
+                border=hei/10
+                c1[0]=c1[0]-border
+                c2[0]=c2[0]-border
+                c1[1]=c1[1]+border
+                c2[1]=c2[1]+border
+                wid=c2[0]-c1[0]
+                hei=c2[1]-c1[1]
                 letterbox=(hei-wid)/2
                 #blank_image = np.zeros((wid,wid,3), np.uint8)
                 #crop_img=img[c1[1],c1[1]+hei,c1[0]-letterbox:c1[0]-letterbox+hei]
