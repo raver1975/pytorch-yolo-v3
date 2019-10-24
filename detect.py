@@ -334,9 +334,11 @@ if __name__ ==  '__main__':
                 #crop_img=img[c1[1],c1[1]+hei,c1[0]-letterbox:c1[0]-letterbox+hei]
                 bbox=c1[0]-letterbox,c1[1],c1[0]-letterbox+hei,c1[1]+hei
                 crop_image=imcrop(img,bbox)
+                ff=str(uuid.uuid1())+".jpg";
                 newimage = cv2.resize(crop_image,(512,512))
-                cv2.imwrite("{}/sub_{}".format(args.det,str(uuid.uuid1())+".jpg"),newimage)
-            
+                cv2.imwrite("{}/sub_{}".format(args.det,ff),newimage)
+                newimage2=cv2.resize(crop_image,(128,128))
+                cv2.imwrite("{}/thumb_{}".format(args.det,ff),newimage)
         #cv2.rectangle(img, c1, c2,color, 1)
         #t_size = cv2.getTextSize(label, cv2.FONT_HERSHEY_PLAIN, 1 , 1)[0]
         #c2 = c1[0] + t_size[0] + 3, c1[1] + t_size[1] + 4
