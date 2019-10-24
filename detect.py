@@ -311,19 +311,17 @@ if __name__ ==  '__main__':
             hei=c2[1]-c1[1]
             
             if wid>hei:
-                border=wid/10
                 letterbox=(wid-hei)/2
                 #blank_image = np.zeros((wid,wid,3), np.uint8)
                 #crop_img=img[c1[1]-letterbox:c1[1]-letterbox+wid,c1[0]:c1[0]+wid]   
-                bbox=c1[0]-wid-border,c1[1]-letterbox-border,c1[0]+wid+border,c1[1]-letterbox+wid+border
+                bbox=c1[0]-wid,c1[1]-letterbox,c1[0]+wid,c1[1]-letterbox+wid
                 crop_image=imcrop(img,bbox)
                 
             else:
-                border=hei/10
                 letterbox=(hei-wid)/2
                 #blank_image = np.zeros((wid,wid,3), np.uint8)
                 #crop_img=img[c1[1],c1[1]+hei,c1[0]-letterbox:c1[0]-letterbox+hei]
-                bbox=c1[0]-letterbox-border,c1[1]-border,c1[0]-letterbox+hei+border,c1[1]+hei+border
+                bbox=c1[0]-letterbox,c1[1],c1[0]-letterbox+hei,c1[1]+hei
                 crop_image=imcrop(img,bbox)
                 
             newimage = cv2.resize(crop_image,(512,512))
