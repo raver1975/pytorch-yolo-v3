@@ -299,11 +299,11 @@ if __name__ ==  '__main__':
             if wid>hei:
                 letterbox=(wid-hei)/2
                 #blank_image = np.zeros((wid,wid,3), np.uint8)
-                crop_img=img[c1[1]-letterbox:c1[1]-letterbox+wid,c1[0],c1[0]+wid]              
+                crop_img=img[c1[1]-letterbox:c1[1]-letterbox+wid,c1[0]:c1[0]+wid]              
             else:
                 letterbox=(hei-wid)/2
                 #blank_image = np.zeros((wid,wid,3), np.uint8)
-                crop_img=img[c1[1],c1[1]+hei,c1[0]-letterbox,c1[0]-letterbox+hei]
+                crop_img=img[c1[1],c1[1]+hei,c1[0]-letterbox:c1[0]-letterbox+hei]
             newimage = cv2.resize(crop_img,(512,512))
             cv2.imwrite(uuid.uuid1()+".jpg",newimage)
             
