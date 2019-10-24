@@ -282,6 +282,19 @@ if __name__ ==  '__main__':
     
     draw = time.time()
 
+    def imcrop(img, bbox):
+        x1, y1, x2, y2 = bbox
+        if x1 < 0 or y1 < 0 or x2 > img.shape[1] or y2 > img.shape[0]:
+                img, x1, x2, y1, y2 = pad_img_to_fit_bbox(img, x1, x2, y1, y2)
+        return img[y1:y2, x1:x2, :]
+
+    def pad_img_to_fit_bbox(img, x1, x2, y1, y2):
+        img = cv2.copyMakeBorder(img, - min(0, y1), max(y2 - img.shape[0], 0),-min(0, x1), max(x2 - img.shape[1], 0),cv2.BORDER_REPLICATE)
+        y2 += -min(0, y1)
+        y1 += -min(0, y1)
+        x2 += -min(0, x1)
+        x1 += -min(0, x1)
+        return img, x1, x2, y1, y2
 
     def write(x, batches, results):
         c1 = tuple(x[1:3].int())
@@ -299,11 +312,17 @@ if __name__ ==  '__main__':
             if wid>hei:
                 letterbox=(wid-hei)/2
                 #blank_image = np.zeros((wid,wid,3), np.uint8)
-                crop_img=img[c1[1]-letterbox:c1[1]-letterbox+wid,c1[0]:c1[0]+wid]              
+                #crop_img=img[c1[1]-letterbox:c1[1]-letterbox+wid,c1[0]:c1[0]+wid]   
+                bbox=c1[1]-letterbox,c1[1]-letterbox+wid,c1[0],c1[0]+wid
+                crop_image=imcrop(img,bbox)
+                
             else:
                 letterbox=(hei-wid)/2
                 #blank_image = np.zeros((wid,wid,3), np.uint8)
-                crop_img=img[c1[1],c1[1]+hei,c1[0]-letterbox:c1[0]-letterbox+hei]
+                #crop_img=img[c1[1],c1[1]+hei,c1[0]-letterbox:c1[0]-letterbox+hei]
+                bbox=c1[1],c1[1]+hei,c1[0]-letterbox,c1[0]-letterbox+hei
+                crop_image=imcrop(img,bbox)
+                
             newimage = cv2.resize(crop_img,(512,512))
             cv2.imwrite(uuid.uuid1()+".jpg",newimage)
             
