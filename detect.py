@@ -320,7 +320,7 @@ if __name__ ==  '__main__':
                 letterbox=(wid-hei)/2
                 #blank_image = np.zeros((wid,wid,3), np.uint8)
                 #crop_img=img[c1[1]-letterbox:c1[1]-letterbox+wid,c1[0]:c1[0]+wid]   
-                bbox=c1[0]-wid,c1[1]-letterbox,c1[0]+wid,c1[1]-letterbox+wid
+                bbox=c1[0],c1[1]-letterbox,c1[0]+wid,c1[1]-letterbox+wid
                 crop_image=imcrop(img,bbox)
                 
             else:
