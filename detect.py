@@ -324,7 +324,7 @@ if __name__ ==  '__main__':
                 crop_image=imcrop(img,bbox)
                 
             newimage = cv2.resize(crop_image,(512,512))
-            cv2.imwrite("{}/sub_{}".format(args.det,x.split("/")[-1]),newimage)
+            cv2.imwrite("{}/sub_{}".format(args.det,str(uuid.uuid1())+".jpg"),newimage)
             
         cv2.rectangle(img, c1, c2,color, 1)
         t_size = cv2.getTextSize(label, cv2.FONT_HERSHEY_PLAIN, 1 , 1)[0]
