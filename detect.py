@@ -329,8 +329,8 @@ if __name__ ==  '__main__':
                 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
                 faces = face_cascade.detectMultiScale(gray, 1.3, 5)
                 
-                print ("faces found"+str(len(faces)))
-                
+                print ("faces found "+str(len(faces)))
+                print(faces)
                 if len(faces)==1:
                     border=hei/20
                     c1=c1[0]-border,c1[1]-border
