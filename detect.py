@@ -329,11 +329,11 @@ if __name__ ==  '__main__':
             newimage = cv2.resize(crop_image,(512,512))
             cv2.imwrite("{}/sub_{}".format(args.det,str(uuid.uuid1())+".jpg"),newimage)
             
-        cv2.rectangle(img, c1, c2,color, 1)
-        t_size = cv2.getTextSize(label, cv2.FONT_HERSHEY_PLAIN, 1 , 1)[0]
-        c2 = c1[0] + t_size[0] + 3, c1[1] + t_size[1] + 4
-        cv2.rectangle(img, c1, c2,color, -1)
-        cv2.putText(img, label, (c1[0], c1[1] + t_size[1] + 4), cv2.FONT_HERSHEY_PLAIN, 1, [225,255,255], 1)
+        #cv2.rectangle(img, c1, c2,color, 1)
+        #t_size = cv2.getTextSize(label, cv2.FONT_HERSHEY_PLAIN, 1 , 1)[0]
+        #c2 = c1[0] + t_size[0] + 3, c1[1] + t_size[1] + 4
+        #cv2.rectangle(img, c1, c2,color, -1)
+        #cv2.putText(img, label, (c1[0], c1[1] + t_size[1] + 4), cv2.FONT_HERSHEY_PLAIN, 1, [225,255,255], 1)
         return img
     
             
@@ -341,7 +341,7 @@ if __name__ ==  '__main__':
       
     det_names = pd.Series(imlist).apply(lambda x: "{}/det_{}".format(args.det,x.split("/")[-1]))
     
-    list(map(cv2.imwrite, det_names, orig_ims))
+    #list(map(cv2.imwrite, det_names, orig_ims))
     
     end = time.time()
     
