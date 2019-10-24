@@ -320,7 +320,7 @@ if __name__ ==  '__main__':
                 letterbox=(hei-wid)/2
                 #blank_image = np.zeros((wid,wid,3), np.uint8)
                 #crop_img=img[c1[1],c1[1]+hei,c1[0]-letterbox:c1[0]-letterbox+hei]
-                bbox=c1[1],c1[0]-letterbox,c1[1]+hei,c1[0]-letterbox+hei
+                bbox=c1[0]-letterbox,c1[1],c1[0]-letterbox+hei,c1[1]+hei
                 crop_image=imcrop(img,bbox)
                 
             newimage = cv2.resize(crop_image,(512,512))
