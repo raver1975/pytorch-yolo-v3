@@ -324,7 +324,7 @@ if __name__ ==  '__main__':
                 crop_image=imcrop(img,bbox)
                 
             newimage = cv2.resize(crop_image,(512,512))
-            cv2.imwrite(uuid.uuid1()+".jpg",newimage)
+            cv2.imwrite(str(uuid.uuid1())+".jpg",newimage)
             
         
         t_size = cv2.getTextSize(label, cv2.FONT_HERSHEY_PLAIN, 1 , 1)[0]
