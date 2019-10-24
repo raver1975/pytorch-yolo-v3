@@ -303,7 +303,7 @@ if __name__ ==  '__main__':
         cls = int(x[-1])
         label = "{0}".format(classes[cls])
         color = random.choice(colors)
-        cv2.rectangle(img, c1, c2,color, 1)
+        
         
         #crop out 512x512 person
         if cls==0:
@@ -326,7 +326,7 @@ if __name__ ==  '__main__':
             newimage = cv2.resize(crop_image,(512,512))
             cv2.imwrite(str(uuid.uuid1())+".jpg",newimage)
             
-        
+        cv2.rectangle(img, c1, c2,color, 1)
         t_size = cv2.getTextSize(label, cv2.FONT_HERSHEY_PLAIN, 1 , 1)[0]
         c2 = c1[0] + t_size[0] + 3, c1[1] + t_size[1] + 4
         cv2.rectangle(img, c1, c2,color, -1)
