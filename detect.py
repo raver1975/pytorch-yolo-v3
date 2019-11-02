@@ -296,6 +296,18 @@ if __name__ ==  '__main__':
         x1 += -min(0, x1)
         return img, x1, x2, y1, y2
 
+    def dhash(image, hashSize=8):
+        # resize the input image, adding a single column (width) so we
+        # can compute the horizontal gradient
+        resized = cv2.resize(image, (hashSize + 1, hashSize))
+ 
+        # compute the (relative) horizontal gradient between adjacent
+        # column pixels
+        diff = resized[:, 1:] > resized[:, :-1]
+ 
+	    # convert the difference image to a hash
+	    return sum([2 ** i for (i, v) in enumerate(diff.flatten()) if v])
+    
     def write(x, batches, results):
         c1 = tuple(x[1:3].int())
         c2 = tuple(x[3:5].int())
@@ -341,8 +353,9 @@ if __name__ ==  '__main__':
                     #crop_img=img[c1[1],c1[1]+hei,c1[0]-letterbox:c1[0]-letterbox+hei]
                     bbox=c1[0]-letterbox,c1[1],c1[0]-letterbox+hei,c1[1]+hei
                     crop_image=imcrop(img,bbox)
-                    ff=str(uuid.uuid1())+".jpg";
                     newimage = cv2.resize(crop_image,(512,512))
+                    ff=str(dhash(newimage))+".jpg";
+                    
                     gray = cv2.cvtColor(newimage, cv2.COLOR_BGR2GRAY)
                     faces = face_cascade.detectMultiScale(gray, 1.3, 5)               
                     print ("subfaces found "+str(len(faces)))
