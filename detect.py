@@ -335,12 +335,12 @@ if __name__ ==  '__main__':
                 
             else:
                 #face detection
-                face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-                gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-                faces = face_cascade.detectMultiScale(gray, 1.3, 5)               
-                print ("faces found "+str(len(faces)))
-                print(faces)
-                if len(faces)>0:
+                #face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+                #gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                #faces = face_cascade.detectMultiScale(gray, 1.3, 5)               
+                #print ("faces found "+str(len(faces)))
+                #print(faces)
+                if True: #len(faces)>0:
                     border=hei/20
                     c1=c1[0]-border,c1[1]-border
                     c2=c2[0]+border,c2[1]+border
