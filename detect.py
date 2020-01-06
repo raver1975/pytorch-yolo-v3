@@ -355,10 +355,10 @@ if __name__ ==  '__main__':
                     ff=str(dhash(newimage))+".jpg";
                     
                     gray = cv2.cvtColor(newimage, cv2.COLOR_BGR2GRAY)
-                    faces = face_cascade.detectMultiScale(gray, 1.3, 5)               
-                    print ("subfaces found "+str(len(faces)))
-                    print(faces)
-                    if len(faces)==1:
+                    #faces = face_cascade.detectMultiScale(gray, 1.3, 5)               
+                    #print ("subfaces found "+str(len(faces)))
+                    #print(faces)
+                    if True: #len(faces)==1:
                         cv2.imwrite("{}/sub_{}".format(args.det,ff),newimage)
                         newimage2=cv2.resize(crop_image,(128,128))
                         cv2.imwrite("{}/thumb_{}".format(args.det,ff),newimage2)
