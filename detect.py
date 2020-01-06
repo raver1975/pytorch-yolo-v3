@@ -316,7 +316,7 @@ if __name__ ==  '__main__':
         
         
         #crop out 512x512 person
-        if cls==0:
+        if cls==16:
             wid=c2[0]-c1[0]
             hei=c2[1]-c1[1]
             
