@@ -340,28 +340,28 @@ if __name__ ==  '__main__':
                 #faces = face_cascade.detectMultiScale(gray, 1.3, 5)               
                 #print ("faces found "+str(len(faces)))
                 #print(faces)
-                if True: #len(faces)>0:
-                    border=hei/20
-                    c1=c1[0]-border,c1[1]-border
-                    c2=c2[0]+border,c2[1]+border
-                    wid=c2[0]-c1[0]
-                    hei=c2[1]-c1[1]
-                    letterbox=(hei-wid)/2
+            if True: #len(faces)>0:
+                border=hei/20
+                c1=c1[0]-border,c1[1]-border
+                c2=c2[0]+border,c2[1]+border
+                wid=c2[0]-c1[0]
+                hei=c2[1]-c1[1]
+                letterbox=(hei-wid)/2
                     #blank_image = np.zeros((wid,wid,3), np.uint8)
                     #crop_img=img[c1[1],c1[1]+hei,c1[0]-letterbox:c1[0]-letterbox+hei]
-                    bbox=c1[0]-letterbox,c1[1],c1[0]-letterbox+hei,c1[1]+hei
-                    crop_image=imcrop(img,bbox)
-                    newimage = cv2.resize(crop_image,(512,512))
-                    ff=str(dhash(newimage))+".jpg";
+                bbox=c1[0]-letterbox,c1[1],c1[0]-letterbox+hei,c1[1]+hei
+                crop_image=imcrop(img,bbox)
+                newimage = cv2.resize(crop_image,(512,512))
+                ff=str(dhash(newimage))+".jpg";
                     
-                    gray = cv2.cvtColor(newimage, cv2.COLOR_BGR2GRAY)
+                    #gray = cv2.cvtColor(newimage, cv2.COLOR_BGR2GRAY)
                     #faces = face_cascade.detectMultiScale(gray, 1.3, 5)               
                     #print ("subfaces found "+str(len(faces)))
                     #print(faces)
-                    if True: #len(faces)==1:
-                        cv2.imwrite("{}/sub_{}".format(args.det,ff),newimage)
-                        newimage2=cv2.resize(crop_image,(128,128))
-                        cv2.imwrite("{}/thumb_{}".format(args.det,ff),newimage2)
+                if True: #len(faces)==1:
+                    cv2.imwrite("{}/sub_{}".format(args.det,ff),newimage)
+                    newimage2=cv2.resize(crop_image,(128,128))
+                    cv2.imwrite("{}/thumb_{}".format(args.det,ff),newimage2)
         #cv2.rectangle(img, c1, c2,color, 1)
         #t_size = cv2.getTextSize(label, cv2.FONT_HERSHEY_PLAIN, 1 , 1)[0]
         #c2 = c1[0] + t_size[0] + 3, c1[1] + t_size[1] + 4
