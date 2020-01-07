@@ -320,7 +320,7 @@ if __name__ ==  '__main__':
             wid=c2[0]-c1[0]
             hei=c2[1]-c1[1]
             
-            if wid>hei:
+            if wid<=hei:
                 border=wid/20
                 c1=c1[0]-border,c1[1]-border
                 c2=c2[0]+border,c2[1]+border
